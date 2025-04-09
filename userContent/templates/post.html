@@ -199,6 +199,16 @@
         font-size: x-large;
     }
 
+    #post_text{
+        word-wrap: break-word; 
+        white-space: normal; 
+    }
+
+    #reply_text{
+        word-wrap: break-word; 
+        white-space: normal; 
+    }
+    
 </style>
 <div id = "mainHeader">
     <h1>School Forum</h1>
@@ -277,7 +287,7 @@
                         <h4 class = "metadata"><a href="{% url 'view_post' post.id %}#reply-{{ item.id }}">#{{ item.reply_index }}</a></h4>
                         <p class = "metadata">on {{item.reply_created|date:"d/m/y  G:i"}}</p>
                         <br>  
-                        <p>{{item.reply_text}}</p>
+                        <p id = "reply_text">{{item.reply_text}}</p>
                     </span>
                     <br>
                     {% if user.id != item.user_id %}
