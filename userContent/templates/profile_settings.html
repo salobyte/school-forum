@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+    <title> {{user.username}}'s Settings | School Forum </title>
+</head>
+
+<style>
+    #mainHeader{
+        margin: -10px;
+        margin-bottom:10px;
+        padding: 16px 20px;
+        box-shadow: 0px 5px 10px rgb(104, 104, 104);
+        background: #282c74;
+        color: #ffff;
+    }
+
+    body, input{  
+        font-family: sans-serif;
+    }
+
+    .banner_link, banner_link:visited {
+        color:white;
+    }
+    
+    #home{
+        margin-bottom: -10px;
+        text-align:right;
+        color:#ffff;
+    }
+
+    .container{
+        font-size: large;
+        margin: 10px;
+    }
+
+    .box{
+        margin: auto;
+        border: 100px;
+        padding: 50px;
+        border-radius: 25px;
+        box-shadow: 1px 2px 10px rgb(144, 156, 156);
+    }
+
+    #save_button{
+        background-color: #282c74;
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    width: 100px;
+    height: 50px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+    #bio_entry{
+    display: block;
+    margin-top:10px;
+    margin-bottom: 10px;
+    font-size: large;
+    resize: none;
+    }
+
+    #error{
+        padding: 20px;
+        background-color:red;
+        margin:20px;
+        color:white;
+        font-size: 20px;
+    }
+
+    #success{
+        margin:20px;
+        padding: 20px;
+        background-color: rgb(0, 255, 4);
+        color:white;
+        font-size: 20px;
+    }
+
+</style>
+
+<div id = "mainHeader">
+    <h1>School Forum</h1>
+    {% if user.is_authenticated %}
+        <p>You are currently signed in as <a href = "{% url 'profile' user.id %}" class= "banner_link"> {{user.username}}</a>. <a href = "{% url 'profile_settings' user.id %}" class ="banner_link"> View Settings</a> / <a href = "{% url 'logout' %}" class ="banner_link">Sign Out.</a></p>
+    {% else %}
+        <p>Not logged in. Login <a href="{% url 'login' %}" class = "banner_link"> here.</a></p>
+    {% endif %}
+    <a href= "{% url 'home' %}" id = "home"> Home </a>
+</div>
+<br>
+
+{% if messages %}
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <div  id = "error">
+        <p>{{ message }}</p>
+        </div>
+    {% endif %}
+    {% if message.tags == "success" %}
+        <div  id = "success", role = "alert">
+        <p>{{ message }}</p>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="container">
+    <div class = "box">
+        <h1>Settings</h1>
+        <div id = "input">
+            <form action ="" method="post", enctype ="multipart/form-data">
+                {% csrf_token %}
+                {{new_info.as_p}}
+                {{new_profile.as_p}}
+                <button type="submit" id ="save_button">Save changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

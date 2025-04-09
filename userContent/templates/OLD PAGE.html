@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Put CSS here-->
+    <title>Posts</title>
+</head>
+
+<style>
+    /*move to separate CSS later. 
+    IDs = specific to one element; classes = shared IDs*/
+    .enter_post {
+        resize: none; 
+    }
+
+    label{
+        display:block;
+        margin-top:5px;
+        margin-bottom:5px
+    }
+    .heading{
+        text-align: center;
+    }
+    .row{
+        padding: 10px;
+        text-align: center;
+        border: 1px solid black
+    }
+</style>
+
+<body>
+    <h1>Create Post</h1>
+    <br>
+    <form action ="" method="post">
+        {% csrf_token %} 
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    
+    <h2>View All Posts</h2>
+    <table>
+        <tr>
+            <th class = "heading">Post Title</th>
+            <th class = "heading">Post Body</th>
+            <th class = "heading">Likes Count</th>
+            <th class = "heading">Created At</th>  
+        </tr>
+        {% for item in query_results %}
+            <tr> 
+                <td class = "row">{{item.post_title}}</td>
+                <td class = "row">{{item.post_body }}</td>
+                <td class = "row">{{item.likes_count }}
+                    <a href action="{% url 'like_post' post_id=item.id %}" method="post">Like</a>
+                </td>
+                <td class = "row">{{item.created_at}}</td>   
+            </tr>
+        
+    {% endfor %}
+</table>
+</body>
+       
+</html>
