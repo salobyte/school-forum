@@ -122,7 +122,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = "/home/donquixote/donquixote.eu.pythonanywhere.com/staticfiles"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/home/donquixote/donquixote.eu.pythonanywhere.com/media"
+MEDIA_ROOT = "/home/donquixote/schoolforum/school-forum/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
