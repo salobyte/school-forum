@@ -122,7 +122,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = "/home/donquixote/donquixote.eu.pythonanywhere.com/staticfiles"
 
 MEDIA_URL = "/media/"
-MEDIA_DIR = [BASE_DIR / "media"]
 MEDIA_ROOT = "/home/donquixote/donquixote.eu.pythonanywhere.com/media"
 
 # Default primary key field type
